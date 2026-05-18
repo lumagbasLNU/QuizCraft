@@ -92,15 +92,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         } else {
             paginationContainer.style.display = 'flex';
+            paginationContainer.style.alignItems = 'center';
+            paginationContainer.style.gap = '0.5rem';
         }
 
-        // --- PREVIOUS ARROW ---
+        // --- PREVIOUS BUTTON ---
         const prevBtn = document.createElement('button');
-        prevBtn.className = `qr-page-btn arrow-btn ${currentPage === 1 ? 'disabled' : ''}`;
-        prevBtn.innerHTML = `
-            <svg viewBox="0 0 24 24" fill="#00FFF6" stroke="none" width="16" height="16" style="transform: rotate(180deg);">
-                <polygon points="5 3 19 12 5 21"></polygon>
-            </svg>`;
+        prevBtn.className = 'page-btn';
+        prevBtn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>';
+        prevBtn.disabled = currentPage <= 1;
         prevBtn.onclick = () => {
             if (currentPage > 1) {
                 currentPage--;
@@ -109,25 +109,21 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         paginationContainer.appendChild(prevBtn);
 
-        // --- PAGE NUMBERS ---
-        for (let i = 1; i <= totalPages; i++) {
-            const pageBtn = document.createElement('button');
-            pageBtn.className = `qr-page-btn ${currentPage === i ? 'active' : ''}`;
-            pageBtn.textContent = i;
-            pageBtn.onclick = () => {
-                currentPage = i;
-                renderHistoryCards();
-            };
-            paginationContainer.appendChild(pageBtn);
-        }
+        // --- PAGE INFO ---
+        const pageInfo = document.createElement('span');
+        pageInfo.className = 'page-info';
+        pageInfo.style.color = '#e0e5e9';
+        pageInfo.style.fontSize = '0.95rem';
+        pageInfo.style.fontWeight = '600';
+        pageInfo.style.margin = '0 5px';
+        pageInfo.textContent = `${currentPage} / ${totalPages}`;
+        paginationContainer.appendChild(pageInfo);
 
-        // --- NEXT ARROW ---
+        // --- NEXT BUTTON ---
         const nextBtn = document.createElement('button');
-        nextBtn.className = `qr-page-btn arrow-btn ${currentPage === totalPages ? 'disabled' : ''}`;
-        nextBtn.innerHTML = `
-            <svg viewBox="0 0 24 24" fill="#00FFF6" stroke="none" width="16" height="16">
-                <polygon points="5 3 19 12 5 21"></polygon>
-            </svg>`;
+        nextBtn.className = 'page-btn';
+        nextBtn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>';
+        nextBtn.disabled = currentPage >= totalPages;
         nextBtn.onclick = () => {
             if (currentPage < totalPages) {
                 currentPage++;

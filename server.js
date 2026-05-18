@@ -678,7 +678,7 @@ app.get('/api/admin/quizzes', authenticateToken, requireAdmin, async (req, res) 
         const quizzes = await Quiz.find({})
             .populate('creatorId', 'username')
             .sort({ createdAt: -1 })
-            .select('title shareCode creatorId isCommunity thumbnail createdAt');
+            .select('title shareCode creatorId isCommunity isPublic thumbnail createdAt');
         res.json(quizzes);
     } catch (error) {
         sendError(res, error, 'Admin quizzes error');
