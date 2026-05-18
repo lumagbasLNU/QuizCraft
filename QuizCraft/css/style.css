@@ -275,26 +275,15 @@ body.dashboard-body {
     min-height: 100vh;      /* min-height instead of height: allows body to grow beyond viewport */
     overflow-y: auto; 
     
-    /* Forces the background to stretch across the dashboard */
+    /* Dark tint baked into the background — always covers full viewport */
     background-color: var(--bg-dark);
-    background-image: url('../assets/background.svg');
+    background-image: 
+        linear-gradient(rgba(8, 12, 15, 0.75), rgba(8, 12, 15, 0.75)),
+        url('../assets/background.svg');
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-}
-
-/* Dark overlay — fixed to viewport, always covers full screen */
-body.dashboard-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(8, 12, 15, 0.75);
-    z-index: 0;
-    pointer-events: none;
 }
 
 /* --- Reusable True Glass Panel --- */
@@ -442,7 +431,6 @@ body.dashboard-body::after {
     width: 100%;
     box-sizing: border-box; 
     position: relative;
-    z-index: 1; /* Sits above the body::after dark overlay */
     border-top: 1px solid rgba(0, 242, 254, 0.05); 
     
     /* THE FIX: Explicit paddings to keep the 100px gap at the top */
