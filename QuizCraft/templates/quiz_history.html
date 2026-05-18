@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz History - QuizCraft</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+    <div id="navbar-container"></div>
+
+    <main class="dashboard-main-full">
+        <div class="qh-wrapper">
+            
+            <header class="qh-header">
+                
+                <div class="qh-header-left">
+                    <button class="qh-btn-back" id="btn-back-dashboard" aria-label="Go Back">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#00FFF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="15 18 9 12 15 6"></polygon>
+                        </svg>
+                    </button>
+                    <h1>Quiz History</h1>
+                    <div class="qh-divider"></div>
+                    <h2>Record of Past Attempts</h2>
+                </div>
+
+                <div class="qh-pagination-container">
+                    
+                </div>
+
+            </header>
+
+            <section class="qh-grid" id="history-grid"></section>
+
+        </div>
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/quiz_history.js"></script>
+</body>
+</html>

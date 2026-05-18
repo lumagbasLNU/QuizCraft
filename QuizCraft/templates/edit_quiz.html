@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Quiz - QuizCraft</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+    <div id="navbar-container"></div>
+
+    <main class="dashboard-main-full">
+        <div class="create-quiz-wrapper">
+            
+            <header class="page-header">
+                <h1 id="quiz-page-title">Edit <span id="display-quiz-title" style="color: #00FFF6;">Loading...</span></h1>
+                <p>Fill in the details for your custom quiz</p>
+            </header>
+
+            <section class="quiz-config-section">
+                <div class="config-main-panel glass-panel">
+                    <div class="config-details">
+                        <h3>Quiz Details</h3>
+                        <p class="subtext">Enter basic information about your quiz</p>
+                        
+                        <div class="form-group mt-2">
+                            <label>Quiz Title</label>
+                            <input type="text" id="quiz-title" class="custom-input" placeholder="Enter quiz title...">
+                        </div>
+                        
+                        <div class="form-group mt-2">
+                            <label>Quiz Description (Optional)</label>
+                            <textarea class="custom-textarea" id="quiz-description" placeholder="Write a short description about what this quiz covers..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="config-thumbnail">
+                        <h3>Quiz Thumbnail (Optional)</h3>
+                        <div class="upload-area mt-2">
+                            <input type="file" id="thumbnail-upload" accept="image/png, image/jpeg" class="sr-only" aria-hidden="true">
+                            <button type="button" class="upload-icon-box" id="icon-upload-trigger" aria-label="Upload Thumbnail">
+                                <img src="../assets/icons/upload.svg" alt="Upload Icon" class="upload-svg">
+                            </button>
+                            <div class="upload-info">
+                                <span class="upload-title">Upload an image</span>
+                                <span class="upload-limits">Max 5MB, JPG/PNG</span>
+                                <button type="button" class="btn-browse" id="btn-upload-trigger">Browse Files</button>
+                            </div>
+                        </div>
+                        <div class="form-group mt-4">
+                            <label>Privacy Settings</label>
+                            <select id="quiz-privacy" class="custom-input" style="cursor: pointer; appearance: auto; background-color: transparent;">
+                                <option value="private" style="background-color: #0B1519;">Private</option>
+                                <option value="public" style="background-color: #0B1519;">Public</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="questions-section mt-4">
+                <div class="questions-header">
+                    <h2>Questions</h2>
+                    <button type="button" class="btn-add-question" id="add-question-btn">
+                        Add Question
+                    </button>
+                </div>
+                
+                <div class="questions-empty-state glass-panel" id="empty-state" style="display: none;">
+                    <p class="empty-title">No questions added yet</p>
+                    <p class="empty-subtext">Click the button above to add questions</p>
+                </div>
+                
+                <div id="questions-container"></div>
+            </section>
+
+            <div class="form-actions mt-2">
+                <button type="button" class="btn-cancel" id="btn-trigger-cancel">Cancel</button>
+                <button type="button" class="btn-save" id="btn-save-quiz">Save Changes</button>
+            </div>
+
+        </div>
+
+        <div class="modal-overlay" id="cancel-modal-overlay" style="display: none;">
+            <div class="cancel-modal">
+                <h2 class="cancel-modal-title">Are you sure you want to cancel?</h2>
+                <div class="modal-buttons">
+                    <button type="button" class="modal-btn" id="btn-confirm-cancel">Yes</button>
+                    <button type="button" class="modal-btn" id="btn-close-cancel">No</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="save-modal-overlay" style="display: none;">
+            <div class="cancel-modal"> <h2 class="cancel-modal-title">Would you like to finalize your changes?</h2>
+                <div class="modal-buttons">
+                    <button type="button" class="modal-btn" id="btn-confirm-save">Yes</button>
+                    <button type="button" class="modal-btn" id="btn-close-save">No</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/edit_quiz.js"></script>
+</body>
+</html>

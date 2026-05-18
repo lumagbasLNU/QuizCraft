@@ -1,0 +1,3128 @@
+/* --- CSS Reset & Variables --- */
+:root {
+    --bg-dark: #081114;
+    --card-bg: rgba(26, 32, 35, 0.5); /* Slightly transparent dark background */
+    --cyan-primary: #00f2fe;
+    --cyan-glow: rgba(0, 242, 254, 0.4);
+    --text-main: #ffffff;
+    --text-muted: #a0aab2;
+    --input-bg: #1a1e21;
+    --input-border: #2a3135;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-dark);
+    
+    /* Background SVG - Kept exactly as you had it */
+    background-image: url('../assets/background.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+
+    min-height: 100vh;
+    margin: 0; /* Ensures no tiny white gaps at the edges */
+
+    /* LAYOUT FIXES */
+    display: flex;
+    flex-direction: column;         /* Stacks Navbar on top of Content */
+    justify-content: flex-start;    /* Starts rendering from the top (Fixes clipping) */
+    align-items: stretch;           /* Allows content to take full width */
+}
+
+
+
+/* --- Utility Classes --- */
+/* Hides labels visually but keeps them for screen readers (Semantic accessibility) */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* --- Layout --- */
+.login-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+}
+
+/* Left Section */
+.branding-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    min-width: 300px;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.brand-logo {
+    width: 300px;
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+}
+
+.brand-text {
+    width: 270px;
+    height: auto;
+}
+
+/* Right Section */
+.form-section {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    min-width: 350px;
+}
+
+/* --- Card UI --- */
+.login-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(1px);
+    width: 100%;
+    max-width: 480px;
+    padding: 3rem 2rem 5rem 2rem;
+    border-radius: 16px;
+    border: 2px solid rgba(0, 241, 254, 0.463);
+    /* This creates the outer and inner cyan glow */
+    box-shadow: 0 0 20px var(--cyan-glow), inset 0 0 10px rgba(0, 242, 254, 0.1);
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 1000px;
+    justify-self: center;
+}
+
+.card-header h1 {
+    font-size: 2.3rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+}
+
+.card-header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* --- Form Elements --- */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Input Wrapper styling to hold the icon and input field together */
+.input-group {
+    display: flex;
+    align-items: center;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    padding: 0 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group:focus-within {
+    border-color: var(--cyan-primary);
+    box-shadow: 0 0 8px rgba(0, 242, 254, 0.3);
+}
+
+.input-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--text-muted);
+    margin-right: 0.75rem;
+}
+
+.input-group input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    padding: 1rem 0;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.input-group input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Button */
+.btn-primary {
+    background-color: var(--cyan-primary);
+    color: #000000;
+    font-weight: 600;
+    font-size: 1rem;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 2.5rem;
+    cursor: pointer;
+    transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.2s ease;
+    box-shadow: 0 0 15px var(--cyan-glow);
+}
+
+.btn-primary:hover {
+    background-color: #011e22; 
+    color: var(--cyan-primary);
+    border-color: var(--cyan-primary);
+    box-shadow: 0 0 25px var(--cyan-glow);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* --- Footer --- */
+.card-footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.card-footer a {
+    color: var(--cyan-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.card-footer a:hover {
+    color: #ffffff;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .login-wrapper {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    
+    .login-card {
+        padding: 3rem 1.5rem;
+    }
+}
+
+/* --- Register Template  --- */
+/* Centers the form when there is no logo next to it */
+.centered-form {
+    justify-content: center;
+    flex: 100%; 
+}
+
+.centered-form .login-card {
+    max-width: 600px; /* Increased from 500px */
+    padding: 5rem 3rem;
+}
+
+/* --- Form Layout Modifiers --- */
+/* Groups inputs side-by-side for the register form */
+.input-row {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.input-row .input-group {
+    flex: 1;
+    min-width: 0;
+}
+
+@media (max-width: 480px) {
+    .input-row {
+        flex-direction: column;
+    }
+}
+
+/* =========================================
+            --- DASHBOARD --- 
+========================================= */
+
+body.dashboard-body {
+    display: flex; 
+    flex-direction: column;
+    min-height: 100vh;      /* min-height instead of height: allows body to grow beyond viewport */
+    overflow-y: auto; 
+    
+    /* Forces the background to stretch across the dashboard */
+    background-color: var(--bg-dark);
+    background-image: url('../assets/background.svg');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* --- Reusable True Glass Panel --- */
+.glass-panel {
+    background: rgba(15, 20, 24, 0.4); /* Perfect balance to see background */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 242, 254, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.05), inset 0 0 10px rgba(0, 242, 254, 0.02);
+}
+
+/*Used to make sure that the nav bar fills the gaps on its side*/
+#navbar-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* --- Top Navigation --- */
+.top-navbar {
+    display: flex;
+    justify-content: space-between; /* Pushes left and right sides apart */
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    
+    
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    
+    /* Adjust padding to keep the logo and buttons away from the extreme edges */
+    padding: 1rem 4rem;
+    box-sizing: border-box;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.mini-logo {
+    width: 150px;
+    height: auto;
+}
+
+.brand-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* Controls the exact space between the button, user info, and logout */
+}
+
+.create-quiz-container{
+    padding-top: 100px; /* Adjust based on navbar height */
+    width: 100%;
+    max-width: 1200px; /* Optional: keeps it from stretching too wide */
+    margin: 0 auto;
+}
+
+/* --- Create Quiz Button --- */
+.create-quiz-btn {
+    position: relative; /* Allows us to stack the images inside */
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex; /* Ensures the button boundary hugs the image tightly */
+}
+
+.create-quiz-btn img {
+    height: 40px; /* Adjust this to match your username/logout icon height */
+    width: auto;
+    display: block;
+    transition: opacity 0.4s ease-in-out; /* Controls the crossfade speed */
+}
+
+/* Force the hover image to sit perfectly on top of the normal image */
+.create-quiz-btn .img-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0; /* Hidden by default */
+}
+
+.create-quiz-btn:hover .img-normal {
+    opacity: 0; /* Fade out */
+}
+
+.create-quiz-btn:hover .img-hover {
+    opacity: 1; /* Fade in */
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left; /* Fixes the text alignment from the previous version */
+    border-right: 1px solid rgba(255, 255, 255, 0.15); /* The vertical divider */
+    padding-right: 1.5rem; /* Space between the text and the divider line */
+}
+
+.user-info .username {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+.user-info .email {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 75, 75, 0.1);
+    transform: scale(1.1);
+}
+
+.logout-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* --- Main Content (Edge-to-Edge) --- */
+.dashboard-main-full {
+    flex: 1; 
+    width: 100%;
+    box-sizing: border-box; 
+    background: rgba(8, 12, 15, 0.75); 
+    border-top: 1px solid rgba(0, 242, 254, 0.05); 
+    
+    /* THE FIX: Explicit paddings to keep the 100px gap at the top */
+    padding-top: 100px; 
+    padding-right: 4rem;
+    padding-left: 4rem;
+    padding-bottom: 1.5rem;
+    
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;   /* Allow vertical scrolling — kills the clipping trap */
+    min-height: 100vh;  /* Always fill the full viewport height */
+}
+
+.content-header {
+    margin-bottom: 1rem;
+}
+
+.content-header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+}
+
+/* --- Join Quiz Bar --- */
+.join-quiz-bar {
+    margin-bottom: 1.5rem;
+}
+
+.join-input-group {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 460px;
+}
+
+.join-input-group input {
+    flex: 1;
+    background: rgba(0, 242, 254, 0.05);
+    border: 1.5px solid rgba(0, 242, 254, 0.25);
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    color: #ffffff;
+    font-family: 'Inter', monospace;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.join-input-group input:focus {
+    border-color: #09FFF3;
+    box-shadow: 0 0 12px rgba(9, 255, 243, 0.2);
+}
+
+.join-input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.5px;
+    text-transform: none;
+}
+
+.join-quiz-btn {
+    background: transparent;
+    border: 1.5px solid #09FFF3;
+    color: #09FFF3;
+    border-radius: 10px;
+    padding: 0.7rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.join-quiz-btn:hover {
+    background: #09FFF3;
+    color: #000000;
+    box-shadow: 0 0 15px rgba(9, 255, 243, 0.35);
+}
+
+.join-quiz-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.join-error {
+    color: #ff4d6a;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    margin-left: 2px;
+}
+
+/* --- Copy Code Button (on quiz cards) --- */
+.copy-code-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 2px 4px;
+    margin-left: 6px;
+    border-radius: 4px;
+    vertical-align: middle;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.copy-code-btn:hover {
+    background: rgba(9, 255, 243, 0.1);
+    transform: scale(1.15);
+}
+/* --- Sleek Underline Tabs --- */
+.tabs {
+    display: flex;
+    gap: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0; /* Removes bottom padding so the border touches the active underline */
+}
+
+.tab {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 0 0 1rem 0; /* Padding only on the bottom */
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.tab:hover {
+    color: var(--text-main);
+}
+
+.tab.active {
+    color: var(--cyan-primary);
+    font-weight: 600;
+}
+
+/* Underline Effect for Active Tab */
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; 
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--cyan-primary);
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 -2px 10px rgba(0, 242, 254, 0.4);
+}
+
+/* --- Empty State --- */
+.empty-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 7.5rem;
+    text-align: center;
+}
+
+.empty-state h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.empty-state p {
+    color: var(--text-muted);
+    margin-bottom: 2.5rem; /* Large gap before the button */
+    font-size: 1.1rem;
+}
+
+/* Modifier to push the button down slightly */
+.mt-4 {
+    margin-top: 1rem;
+}
+
+/* =========================================
+       --- CHOOSE QUIZ TYPE MODAL --- 
+========================================= */
+
+/* Triggers visibility via JavaScript */
+.modal-overlay.show {
+    display: flex !important; /* Overrides the display: none from your existing overlay */
+}
+
+/* The Modal Container */
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    padding: 3rem;
+    border: 1px solid #00FFF6;
+    border-radius: 16px;
+    background: #0B1519; /* Dark teal background */
+}
+
+/* Back Button */
+.btn-back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+/* Target the SVG directly to increase the visual size */
+.btn-back svg {
+    width: 36px;  /* Increase or decrease this to adjust the size */
+    height: 36px; /* Keep this exactly the same as the width */
+}
+
+.btn-back:hover {
+    transform: scale(1.1);
+}
+
+/* Modal Options Container */
+.modal-options {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+/* --- Quiz Option Cards --- */
+.quiz-option-card {
+    background: rgba(0, 255, 246, 0.05);
+    border: 2px solid #00FFF6;
+    border-radius: 12px;
+    padding: 0; /* Removed padding so the SVG container can touch the edges */
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1; /* Makes both cards equal width */
+    display: flex;
+    overflow: hidden; /* Prevents the SVG from spilling out of the rounded corners */
+}
+
+
+/* --- Icon Swap Logic for Cards --- */
+.option-icon {
+    position: relative;
+    width: 100%;
+    flex: 1;    
+    height: 240px; /* Increased significantly to give the card its new shape */
+    margin-bottom: 0; /* Removed margin since there is no text below it anymore */
+}
+
+.option-icon img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    
+    /* 'contain' scales the SVG as large as possible without cutting off any baked-in text */
+    object-fit: contain; 
+    
+    /* Adds a little breathing room inside the card. Change to 0 if you want it completely flush. */
+    padding: 0; 
+    object-fit: cover;
+    transition: opacity 0.2s ease;
+}
+/* Default State */
+.quiz-option-card .icon-normal { opacity: 1; }
+.quiz-option-card .icon-active { opacity: 0; }
+
+/* Active State */
+.quiz-option-card.active .icon-normal { opacity: 0; }
+.quiz-option-card.active .icon-active { opacity: 1; }
+
+/* Continue Button */
+.btn-continue {
+    background-color: #00FFF6;
+    color: #000000;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.8rem 4rem;
+    border: 1px solid #00FFF6; 
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.2s ease;
+    box-shadow: 0 0 15px rgba(0, 255, 246, 0.4);
+}
+
+.btn-continue:hover {
+    background-color: #011e22;
+    color: #00FFF6;
+    box-shadow: 0 0 25px rgba(0, 255, 246, 0.6);
+}
+
+/* =========================================
+            --- LOGOUT MODAL --- 
+========================================= */
+
+.modal-overlay {
+    display: none; /* Hidden until triggered via Javascript */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75); 
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-modal {
+    background: #0d1518; /* Dark background matching your dashboard */
+    border: 1px solid var(--cyan-primary);
+    border-radius: 12px;
+    padding: 3rem 4rem;
+    text-align: center;
+    max-width: 500px;
+}
+
+.modal-title {
+    color: var(--cyan-primary);
+    font-size: 1.8rem;
+    font-weight: 400; /* Lighter font weight to match the reference */
+    line-height: 1.4;
+    margin-bottom: 2.5rem;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+/* Recreating the specific button style from the image */
+.modal-btn {
+    background-color: var(--cyan-primary);
+    color: #000000;
+    font-weight: 500;
+    font-size: 1.1rem;
+    border: 1px solid transparent;
+    border-radius: 20px; /* Gives it the perfectly rounded pill shape */
+    padding: 0.8rem 3rem;
+    cursor: pointer;
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.2s ease;
+}
+
+.modal-btn:hover {
+    background-color: #011e22;
+    color: var(--cyan-primary);
+    border-color: var(--cyan-primary);
+    box-shadow: 0 0 25px var(--cyan-glow);
+}
+
+/* =========================================
+       --- SETTINGS BUTTON & MODAL --- 
+========================================= */
+
+/* Settings Gear Button */
+.settings-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid rgba(0, 255, 246, 0.2);
+    border-radius: 8px;
+    padding: 0.45rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.settings-btn:hover {
+    border-color: var(--cyan-primary);
+    background: rgba(0, 255, 246, 0.08);
+}
+
+.settings-icon {
+    width: 22px;
+    height: 22px;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.settings-btn:hover .settings-icon {
+    color: var(--cyan-primary);
+}
+
+/* Settings Modal Container */
+.settings-modal {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    padding: 2.5rem 3rem;
+    border: 1px solid var(--cyan-primary);
+    border-radius: 16px;
+    background: #0B1519;
+    animation: settingsSlideIn 0.3s ease;
+}
+
+@keyframes settingsSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-15px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.settings-title {
+    color: var(--cyan-primary);
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.settings-subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+/* Settings Section */
+.settings-section {
+    border-top: 1px solid rgba(0, 255, 246, 0.1);
+    padding-top: 1.5rem;
+}
+
+.settings-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+.settings-item-info h3 {
+    color: var(--text-main);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.settings-item-info p {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+/* Settings Actions */
+.settings-actions {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 255, 246, 0.1);
+    text-align: center;
+}
+
+.settings-actions .modal-btn {
+    width: 100%;
+    padding: 0.9rem;
+    border-radius: 10px;
+}
+
+.settings-actions .modal-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Settings Toast */
+.settings-toast {
+    margin-top: 1rem;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+    animation: toastFadeIn 0.3s ease;
+}
+
+@keyframes toastFadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.toast-success {
+    background: rgba(0, 255, 246, 0.1);
+    border: 1px solid rgba(0, 255, 246, 0.3);
+    color: #00FFF6;
+}
+
+.toast-error {
+    background: rgba(255, 75, 75, 0.1);
+    border: 1px solid rgba(255, 75, 75, 0.3);
+    color: #ff4b4b;
+}
+
+/* =========================================
+       --- CREATE QUIZ PAGE --- 
+========================================= */
+
+.create-quiz-wrapper {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto; /* Centers the content */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-bottom: 120px; /* Scroll bumper: guarantees buttons are never clipped */
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 0.2rem;
+}
+
+.page-header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* --- Top Config Section --- */
+.quiz-config-section {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.config-main-panel {
+    flex: 1;
+    display: flex;
+    padding: 0; /* Removing padding to allow border separation */
+}
+
+/* Split Panel Layout */
+.config-details {
+    flex: 1;
+    padding: 2rem;
+    border-right: 1px solid rgba(0, 255, 246, 0.2);
+}
+
+.config-thumbnail {
+    flex: 1;
+    padding: 2rem;
+}
+
+.config-details h3, .config-thumbnail h3, .config-sidebar h3 {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    margin-bottom: 0.2rem;
+}
+
+.subtext {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* --- MULTI-LINE TEXTAREA --- */
+.custom-textarea {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #005f60;
+    color: #fff;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    min-height: 100px; /* Makes the box tall by default */
+    resize: vertical;  /* Allows the user to drag the bottom corner to make it taller */
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.custom-textarea:focus {
+    outline: none;
+    border-color: #00FFF6; /* Matches your cyan focus state */
+}
+
+.custom-textarea::placeholder {
+    color: var(--text-muted);
+}
+
+/* --- Form Elements --- */
+.mt-2 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 3rem; }
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.custom-input {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(0, 255, 246, 0.4);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+    border-color: #00FFF6;
+    box-shadow: 0 0 10px rgba(0, 255, 246, 0.2);
+}
+
+/* --- Custom Toggle Switch --- */
+.toggle-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toggle-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: transparent;
+    border: 1px solid rgba(0, 255, 246, 0.4);
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--text-muted);
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: rgba(0, 255, 246, 0.1);
+    border-color: #00FFF6;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+    background-color: #00FFF6;
+}
+
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+
+/* --- Thumbnail Upload Area --- */
+.upload-area {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* --- Thumbnail Upload Area --- */
+.upload-icon-box {
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgba(0, 255, 246, 0.4);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 255, 246, 0.05);
+    cursor: pointer;          /* Shows the pointer finger */
+    padding: 0;               /* Resets default button padding */
+    transition: all 0.2s ease;
+}
+
+.upload-icon-box:hover {
+    background: rgba(0, 255, 246, 0.1);
+    border-color: #00FFF6;
+    box-shadow: 0 0 10px rgba(0, 255, 246, 0.2);
+}
+
+/* Sizing for your specific SVG */
+.upload-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.upload-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.upload-title {
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+.upload-limits {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.btn-browse {
+    background-color: #00FFF6;
+    color: #000;
+    border: 1px solid transparent;
+    padding: 0.6rem 2rem;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 246, 0.2);
+}
+
+.btn-browse:hover {
+    background-color: #011e22; /* Dark teal background on hover */
+    color: #00FFF6;
+    border-color: #00FFF6;
+    box-shadow: 0 0 20px rgba(0, 255, 246, 0.6);
+}
+
+/* --- Privacy Sidebar --- */
+.config-sidebar {
+    width: 200px;
+}
+
+.privacy-select {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    margin-top: 0.5rem;
+    color: var(--text-main);
+    border-radius: 8px;
+    appearance: none; /* Removes default OS styling */
+    outline: none;
+    cursor: pointer;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%2300FFF6" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: 50%;
+}
+
+.privacy-select option {
+    background: #0B1519;
+    color: #fff;
+}
+
+
+/* --- Questions Section --- */
+.questions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.questions-header h2 {
+    font-size: 1.5rem;
+    color: var(--text-main);
+}
+
+.btn-add-question {
+    background-color: #00FFF6;
+    color: #000;
+    border: 1px solid transparent;
+    padding: 0.6rem 2rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 246, 0.2);
+}
+
+.btn-add-question:hover {
+    background-color: #011e22; /* Dark teal background on hover */
+    color: #00FFF6;
+    border-color: #00FFF6;
+    box-shadow: 0 0 20px rgba(0, 255, 246, 0.6);
+}
+
+.questions-empty-state {
+    padding: 4rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.empty-title {
+    color: rgba(0, 255, 246, 0.7);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.empty-subtext {
+    color: rgba(0, 255, 246, 0.4);
+    font-size: 0.95rem;
+}
+
+/* --- Footer Actions --- */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+}
+
+.btn-cancel {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid rgba(0, 255, 246, 0.4);
+    padding: 0.6rem 2rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-cancel:hover {
+    background: rgba(0, 255, 246, 0.1);
+    border-color: #00FFF6;
+}
+
+.btn-save {
+    background-color: #00FFF6;
+    color: #000;
+    border: 1px solid transparent;
+    padding: 0.6rem 2rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 246, 0.2);
+}
+
+.btn-save:hover {
+    background-color: #011e22; /* Dark teal background on hover */
+    color: #00FFF6;
+    border-color: #00FFF6;
+    box-shadow: 0 0 20px rgba(0, 255, 246, 0.6);
+}
+
+/* =========================================
+       --- QUESTION BLOCKS & MCQ GRID --- 
+========================================= */
+
+.question-block {
+    padding: 1.5rem 2rem;
+    border: 1px solid rgba(0, 255, 246, 0.3);
+    border-radius: 12px;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 255, 246, 0.1);
+    padding-bottom: 1rem;
+}
+
+.question-number {
+    color: #00FFF6;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.btn-remove {
+    background-color: #00FFF6;
+    color: #000;
+    border: none;
+    padding: 0.4rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-remove:hover {
+    background-color: #ff4b4b; /* Alert red on hover */
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255, 75, 75, 0.4);
+}
+
+/* --- Form Adjustments for Questions --- */
+.label-subtext {
+    color: rgba(0, 255, 246, 0.5);
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin-left: 0.5rem;
+}
+
+.mt-1 { 
+    margin-top: 0.8rem; 
+}
+
+/* --- Multiple Choice Grid (2x2 Layout) --- */
+.mcq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Forces 2 columns */
+    gap: 1.2rem 2rem; /* Up/down gap, left/right gap */
+    width: 100%;
+}
+
+.mcq-option {
+    display: flex;
+    align-items: center;
+    gap: 1rem; 
+    width: 100%;
+}
+
+/* Pill-shaped inputs specific to the MCQ grid */
+.mcq-option .custom-input {
+    flex: 1; 
+    border-radius: 25px; 
+    padding: 0.8rem 1.2rem; 
+}
+
+/* --- Custom Radio Buttons --- */
+.mcq-radio {
+    appearance: none; 
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid rgba(0, 255, 246, 0.4);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.mcq-radio:hover,
+.mcq-radio:checked {
+    border-color: #00FFF6;
+}
+
+/* The solid inner circle when clicked */
+.mcq-radio:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: #00FFF6;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 255, 246, 0.5);
+}
+
+/* =========================================
+       --- QUESTIONS CONTAINER SCROLLBAR --- 
+========================================= */
+
+/* Applies ONLY when a question is added */
+#questions-container:not(:empty) {
+    /* Locks the container to a specific height immediately */
+    height: 34vh; 
+    
+    overflow-y: scroll;
+    padding-right: 1rem; 
+    scroll-behavior: smooth;
+    
+    /* Adds a sleek border to frame the scrolling area */
+    border-bottom: 1px solid rgba(0, 242, 254, 0.1); 
+    padding-bottom: 1rem;
+}
+
+/* --- Custom Webkit Scrollbar Styling --- */
+#questions-container::-webkit-scrollbar {
+    width: 8px; 
+}
+
+#questions-container::-webkit-scrollbar-track {
+    background: rgba(0, 255, 246, 0.05); 
+    border-radius: 10px;
+}
+
+#questions-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 246, 0.3); 
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+#questions-container::-webkit-scrollbar-thumb:hover {
+    background: #00FFF6; 
+}
+
+/* =========================================
+       --- CANCEL CONFIRMATION MODAL --- 
+========================================= */
+
+.cancel-modal {
+    background: #0B1519; /* Dark teal background */
+    border: 1px solid #00FFF6;
+    border-radius: 12px;
+    padding: 3rem 4rem;
+    text-align: center;
+    max-width: 450px;
+}
+
+.cancel-modal-title {
+    color: #00FFF6;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 2.5rem;
+}
+
+
+/* =========================================
+       --- QUIZ CARD REDESIGN --- 
+========================================= */
+
+.quiz-card {
+    background: #111A1E;
+    border: 1px solid #00FFF6;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 300px;      /* Fixed card height — identical across all tabs */
+    min-height: 300px;  /* Prevent collapse on small screens */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  /* Exactly 4 equal columns */
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+/* --- Dashboard Pagination Controls --- */
+.dashboard-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-top: 2rem;
+    padding: 1rem 0;
+}
+
+.dashboard-pagination .page-info {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.dashboard-pagination .page-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.dashboard-pagination .page-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: rgba(255, 255, 255, 0.5);
+    stroke-width: 2.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.3s ease;
+}
+
+.dashboard-pagination .page-btn:hover:not(:disabled) {
+    background: rgba(0, 255, 246, 0.08);
+    border-color: rgba(0, 255, 246, 0.3);
+}
+
+.dashboard-pagination .page-btn:hover:not(:disabled) svg {
+    stroke: #00FFF6;
+}
+
+.dashboard-pagination .page-btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+}
+
+/* Glow + lift on hover */
+.quiz-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 255, 246, 0.25);
+}
+
+/* --- Thumbnail: fixed height, crop-to-fill --- */
+.quiz-card img {
+    width: 100%;
+    height: 160px;             /* Fixed height — guarantees space for text below */
+    object-fit: cover;         /* Crop-to-fill without stretching */
+    display: block;            /* Removes inline image gaps */
+    border-bottom: 1px solid #00FFF6;
+    flex-shrink: 0;            /* Never shrink the thumbnail */
+}
+
+/* --- Card Content: fills remaining space below thumbnail --- */
+.quiz-card-content {
+    padding: 1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    gap: 0.25rem;
+}
+
+/* --- Title: 2-line clamp with ellipsis --- */
+.qc-title {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 0.2rem 0;
+    /* 2-line clamp: shows up to 2 lines, then cuts off with "..." */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.qc-meta {
+    color: #b0b0b0;
+    font-size: 0.85rem;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.qc-creator {
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Ensures the username pops */
+.highlight-cyan {
+    color: #00FFF6;
+}
+/* =========================================
+       --- PAGINATION --- 
+========================================= */
+
+.pagination-wrapper {
+    display: flex;
+    justify-content: flex-end; /* Aligns to the right */
+    padding-top: 1.5rem;       /* Space below the separator */
+    margin-bottom: -0.5rem;    /* Pulls the grid slightly closer */
+    width: 100%;
+}
+
+.pagination-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(15, 20, 24, 0.6);
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 246, 0.15);
+}
+
+.page-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    padding: 0.3rem;
+}
+
+.page-btn:hover:not(:disabled) {
+    color: #00FFF6;
+}
+
+.page-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.page-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.page-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0 0.5rem;
+}
+
+.page-input {
+    background: #0B1519;
+    border: 1px solid rgba(0, 255, 246, 0.4);
+    color: #fff;
+    border-radius: 4px;
+    width: 40px;
+    text-align: center;
+    padding: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    /* Hide default spin arrows */
+    -moz-appearance: textfield; 
+    appearance: textfield;
+}
+
+.page-input::-webkit-outer-spin-button,
+.page-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.page-input:focus {
+    border-color: #00FFF6;
+    box-shadow: 0 0 8px rgba(0, 255, 246, 0.2);
+}
+
+/* =========================================
+       --- VIEW QUIZ MODAL --- 
+========================================= */
+
+.view-quiz-modal {
+    background: #0B1519;
+    border: 2px solid #00FFF6;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 420px; 
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 25px rgba(0, 255, 246, 0.3); /* Cyan glow */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Back Button (Overlays Image) */
+.btn-modal-back {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #0B1519;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.2s ease;
+    padding: 0;
+}
+
+.btn-modal-back:hover {
+    transform: scale(1.1);
+}
+
+.view-quiz-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 1px solid #00FFF6;
+}
+
+.view-quiz-content {
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;
+    position: relative; 
+}
+
+/* Header & Edit Button */
+.vq-header {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.vq-header h2 {
+    color: #00FFF6;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.edit-btn {
+    position: absolute;
+    right: 0; 
+}
+
+/* Meta Data */
+.vq-meta {
+    margin-bottom: 1.2rem;
+    line-height: 1.4;
+}
+
+.vq-meta p {
+    color: #fff;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.vq-meta .highlight {
+    color: #00FFF6;
+}
+
+/* Description Paragraph */
+.vq-description {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+}
+
+/* Buttons Area */
+.vq-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    align-items: center;
+}
+
+.take-quiz-wrapper {
+    position: relative;
+    display: inline-block; 
+}
+
+.btn-take-quiz {
+    background-color: #00FFF6;
+    color: #000;
+    border: none;
+    padding: 0.6rem 3.5rem; 
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 246, 0.3);
+}
+
+.btn-take-quiz:hover {
+    background-color: #011e22;
+    color: #00FFF6;
+    box-shadow: 0 0 15px rgba(0, 255, 246, 0.6);
+}
+
+.icon-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.icon-btn img {
+    width: 22px;
+    height: 22px;
+}
+
+/* Trash Can Bottom Left */
+.delete-btn {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+}
+
+/* =========================================
+   --- VIEW ATTEMPTS BUTTON & MODAL --- 
+========================================= */
+
+/* View Attempts Button (in View Quiz Modal) */
+.btn-view-attempts {
+    background: transparent;
+    border: 1.5px solid rgba(0, 255, 246, 0.4);
+    color: #00FFF6;
+    padding: 0.5rem 2.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+}
+
+.btn-view-attempts:hover {
+    background: rgba(0, 255, 246, 0.1);
+    border-color: #00FFF6;
+    box-shadow: 0 0 15px rgba(0, 255, 246, 0.25);
+}
+
+/* Attempts Modal Container */
+.attempts-modal {
+    background: #0B1519;
+    border: 2px solid #00FFF6;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 560px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 30px rgba(0, 255, 246, 0.25);
+    display: flex;
+    flex-direction: column;
+    animation: attemptsSlideIn 0.3s ease;
+}
+
+@keyframes attemptsSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-12px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.attempts-header {
+    padding: 2rem 2rem 1.2rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 255, 246, 0.12);
+}
+
+.attempts-header h2 {
+    color: #00FFF6;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 0 0.3rem;
+}
+
+.attempts-subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Scrollable body */
+.attempts-body {
+    padding: 1rem 1.5rem 1.5rem;
+    max-height: 380px;
+    overflow-y: auto;
+}
+
+.attempts-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.attempts-body::-webkit-scrollbar-track {
+    background: rgba(0, 255, 246, 0.03);
+    border-radius: 10px;
+}
+
+.attempts-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 246, 0.25);
+    border-radius: 10px;
+}
+
+.attempts-body::-webkit-scrollbar-thumb:hover {
+    background: #00FFF6;
+}
+
+/* Empty / Loading State */
+.attempts-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Attempts Table */
+.attempts-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+}
+
+.attempts-table thead th {
+    text-align: left;
+    color: rgba(0, 255, 246, 0.6);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px solid rgba(0, 255, 246, 0.1);
+}
+
+.attempts-table tbody tr {
+    background: rgba(0, 255, 246, 0.03);
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.attempts-table tbody tr:hover {
+    background: rgba(0, 255, 246, 0.07);
+}
+
+.attempts-table td {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.9rem;
+    color: #fff;
+    vertical-align: middle;
+}
+
+/* First and last cell border-radius */
+.attempts-table tbody tr td:first-child {
+    border-radius: 8px 0 0 8px;
+}
+
+.attempts-table tbody tr td:last-child {
+    border-radius: 0 8px 8px 0;
+}
+
+/* Taker name styling */
+.attempt-taker {
+    font-weight: 600;
+    color: #fff;
+}
+
+/* Score badge */
+.attempt-score {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.3px;
+}
+
+.score-high {
+    background: rgba(0, 255, 136, 0.12);
+    color: #00ff88;
+    border: 1px solid rgba(0, 255, 136, 0.25);
+}
+
+.score-mid {
+    background: rgba(255, 200, 0, 0.12);
+    color: #ffc800;
+    border: 1px solid rgba(255, 200, 0, 0.25);
+}
+
+.score-low {
+    background: rgba(255, 75, 75, 0.12);
+    color: #ff4b4b;
+    border: 1px solid rgba(255, 75, 75, 0.25);
+}
+
+/* Date styling */
+.attempt-date {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+/* =========================================
+   --- QUIZ TAKING INTERFACE --- 
+========================================= */
+
+/* Lock the outer container strictly */
+.quiz-take-fullscreen {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;               /* Do NOT grow — use explicit height instead */
+    flex-shrink: 0;             /* Do NOT shrink below the explicit height */
+    height: calc(100vh - 100px); /* Viewport minus navbar padding — pins footer on screen */
+    min-height: 0;
+    overflow: hidden;           /* Prevents the whole container from scrolling — only .qt-content-area scrolls */
+}
+
+/* Protect the Header from squishing */
+.qt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+.qt-header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.qt-header-left h1 {
+    color: #00FFF6;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.btn-back-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.btn-back-icon:hover {
+    transform: translateX(-4px);
+}
+
+/* Protect the top Divider from squishing */
+.qt-divider {
+    border: 0;
+    height: 1px;
+    background: rgba(0, 255, 246, 0.2); 
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Make ONLY the middle content area scrollable */
+.qt-content-area {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    gap: 1.5rem; 
+    padding: 2rem 1rem; 
+    width: 100%;
+    max-width: 1100px; 
+    margin: 0 auto; 
+    
+    /* Enables scrolling */
+    overflow-y: auto; 
+    
+    /* --- THE SCROLL FADE ALTERNATIVE --- */
+    /* 1. Hides the physical scrollbar across all browsers */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+    
+    /* 2. Creates the smooth fade at the top and bottom edges */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+/* Hides the physical scrollbar in Chrome/Safari */
+.qt-content-area::-webkit-scrollbar {
+    display: none;
+}
+
+.qt-content-area h2 {
+    font-size: 2.3rem; /* Increased for high visibility */
+    color: #fff;
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.3; 
+    /* --- THE FIX FOR LONG UNBROKEN TEXT --- */
+    overflow-wrap: break-word; 
+    word-break: break-word;    
+    max-width: 100%;
+}
+
+.qt-subtext {
+    color: var(--text-muted);
+    font-size: 1.1rem; 
+    margin-bottom: 1rem; 
+}
+
+/* Options */
+.qt-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 1100px; /* Keep it wide to match the content area */
+}
+
+.qt-option {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.5rem 1.8rem;
+    background: rgba(0, 40, 40, 0.2);
+    border: 1px solid #005f60;
+    border-radius: 8px;
+    color: #e0e0e0;
+    font-size: 1.15rem; /* Larger font size */
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.qt-option:hover {
+    border-color: rgba(0, 255, 246, 0.6);
+    background: rgba(0, 255, 246, 0.05);
+}
+
+.qt-option.selected {
+    border-color: #00FFF6;
+    background: rgba(0, 255, 246, 0.1);
+    box-shadow: 0 0 12px rgba(0, 255, 246, 0.2); 
+}
+
+.qt-radio {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #005f60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0; 
+}
+
+.qt-option.selected .qt-radio {
+    border-color: #00FFF6;
+}
+
+.qt-radio-fill {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #00FFF6;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.qt-option.selected .qt-radio-fill {
+    opacity: 1; 
+}
+
+/* Clean up the Footer */
+.qt-footer-full {
+    flex-shrink: 0; /* Protects it from squishing */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+    width: 100%;
+    border-top: 1px solid rgba(0, 255, 246, 0.2); /* Seamless divider */
+    background: transparent; 
+    position: static; /* Removes sticky hack */
+}
+
+.qt-footer-left, .qt-footer-right {
+    flex: 1;
+    display: flex;
+}
+
+.qt-footer-right {
+    justify-content: flex-end;
+    align-items: center; 
+    gap: 1rem;
+}
+
+.qt-progress-wrapper-full {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.qt-progress-bar-bg {
+    width: 100%;
+    max-width: 300px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.qt-progress-bar-fill {
+    height: 100%;
+    background: #00FFF6;
+    border-radius: 4px;
+    transition: width 0.4s ease;
+}
+
+.qt-progress-text {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Secondary Button (For "Previous") */
+.btn-secondary {
+    background: transparent;
+    color: #00FFF6;
+    border: 2px solid #00FFF6; 
+    padding: 0 2rem; 
+    height: 40px; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    border-radius: 25px; 
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    box-sizing: border-box; 
+    margin: 0;
+}
+
+.btn-secondary:hover {
+    background: rgba(0, 255, 246, 0.1);
+}
+
+/* Primary Button (For "Next") */
+.btn-primary {
+    background: #00FFF6;
+    color: #0B1519;
+    border: 2px solid #00FFF6; 
+    padding: 0 1.8rem; 
+    height: 40px; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    border-radius: 25px; 
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: 0.1 ease, transform 0.2s, box-shadow 0.2s;
+    box-sizing: border-box; 
+    margin: 0;
+    box-shadow: none;
+}
+
+.btn-primary:hover {
+    background-color: 0 0 12px rgba(0, 255, 246, 0.2); 
+    border-color: #00e6de;
+    box-shadow: none;
+
+}
+
+/* =========================================
+   --- IDENTIFICATION QUIZ --- 
+========================================= */
+
+.qt-input-container {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.qt-id-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Deep dark transparent fill */
+    border: 1px solid rgba(0, 255, 246, 0.4); 
+    border-radius: 12px;
+    padding: 1.5rem 1.8rem;
+    color: #fff;
+    font-size: 1.25rem; /* Large, highly readable text */
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 10px rgba(0, 255, 246, 0.05);
+}
+
+.qt-id-input:focus {
+    border-color: #00FFF6;
+    box-shadow: 0 0 15px rgba(0, 255, 246, 0.2), inset 0 0 10px rgba(0, 255, 246, 0.1);
+}
+
+.qt-id-input::placeholder {
+    color: rgba(0, 255, 246, 0.3); /* Subtle cyan tint for the placeholder */
+}
+
+/* =========================================
+       --- QUIZ RESULTS PAGE --- 
+========================================= */
+
+.qr-page {
+    position: relative;
+    padding-top: 3rem;
+    min-height: calc(100vh - 70px);
+}
+
+/* Floating Back Button */
+.qr-btn-back {
+    position: absolute;
+    top: 2rem;
+    left: 4rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid #00FFF6;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.qr-btn-back svg {
+    width: 24px;
+    height: 24px;
+}
+
+.qr-btn-back:hover {
+    background: rgba(0, 255, 246, 0.1);
+    transform: scale(1.05);
+}
+
+/* Header */
+.qr-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.qr-header h1 {
+    font-size: 2.8rem;
+    color: #fff;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.qr-header h2 {
+    font-size: 1.5rem;
+    color: #00FFF6;
+    font-weight: 500;
+}
+
+/* Main Layout */
+.qr-layout {
+    display: flex;
+    gap: 3rem;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+/* Left Column (List) */
+.qr-left {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    /* Locks the container to roughly the height of 5 questions */
+    min-height: 580px; 
+}
+
+.qr-results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem; /* This creates the consistent spacing between your result cards */
+}
+
+.qr-result-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 255, 246, 0.03);
+    border: 1px solid rgba(0, 255, 246, 0.2);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    transition: background 0.2s ease;
+}
+
+.qr-result-card:hover {
+    background: rgba(0, 255, 246, 0.08);
+}
+
+.qr-card-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.qr-icon {
+    margin-top: 0.2rem;
+}
+
+.qr-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.qr-text h4 {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 0.4rem;
+}
+
+.qr-text p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.2rem;
+}
+
+.highlight-cyan {
+    color: #00FFF6;
+}
+
+.qr-btn-smart {
+    background: #00FFF6;
+    color: #0B1519;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.qr-btn-smart:hover {
+    background: #011e22;
+    color: #00FFF6;
+    box-shadow: 0 0 10px rgba(0, 255, 246, 0.4);
+}
+/* Pagination */
+.qr-pagination {
+    display: flex;
+    justify-content: flex-end; /* CHANGED: Aligns the buttons to the right */
+    align-items: center; 
+    gap: 0.5rem;
+    margin-top: auto; /* Ensures it stays locked at the bottom */
+}
+
+.qr-page-btn {
+    background: rgba(0, 40, 40, 0.4); /* Dark background for inactive numbers */
+    color: #00FFF6; /* Cyan text */
+    border: 1px solid #005f60; /* Dark cyan border */
+    width: 32px;
+    height: 32px;
+    border-radius: 8px; /* Slightly rounded square */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.qr-page-btn:not(.disabled):not(.active):hover {
+    background: rgba(0, 255, 246, 0.1);
+    border-color: #00FFF6;
+}
+
+/* Active Number State */
+.qr-page-btn.active {
+    background: #00FFF6;
+    color: #0B1519;
+    border-color: #00FFF6;
+    font-weight: 700;
+}
+
+/* Arrow Buttons styling (removes borders/backgrounds) */
+.qr-page-btn.arrow-btn {
+    background: transparent;
+    border: none;
+    width: auto; /* Allows the arrow to sit naturally */
+    padding: 0 0.2rem;
+}
+
+.qr-page-btn.arrow-btn:not(.disabled):hover {
+    color: #fff; /* Turns arrow white when hovered */
+}
+
+/* The Dimmed/Disabled State */
+.qr-page-btn.disabled {
+    opacity: 0.3; /* Reduces opacity to look inactive */
+    cursor: not-allowed; /* Shows the unclickable mouse cursor */
+}
+
+/* Right Column (Score Panel) */
+.qr-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 2rem;
+    gap: 3rem;
+}
+
+/* The Magic Conic-Gradient Circular Progress */
+.qr-score-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    /* The var(--progress) is injected dynamically by JS */
+    background: conic-gradient(#00FFF6 var(--progress), rgba(0, 255, 246, 0.1) 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 1s ease-out;
+}
+
+/* The inner black circle that makes it look like a ring */
+.qr-score-inner {
+    width: 160px; /* Leaves a 10px glowing ring */
+    height: 160px;
+    border-radius: 50%;
+    background: #0D1619; /* Matches glass panel */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-score-fraction {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+.qr-score-divider {
+    width: 60%;
+    border: 0;
+    height: 2px;
+    background: #00FFF6;
+    margin: 0.5rem 0;
+}
+
+.qr-score-percent {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #00FFF6;
+}
+
+.qr-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.qr-btn-block {
+    width: 100%;
+}
+
+.btn-primary-dark {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 1.5rem;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary-dark:hover {
+    background: rgba(0, 255, 246, 0.1);
+    border-color: #00FFF6;
+}
+
+/* =========================================
+   --- RETAKE CONFIRMATION MODAL --- 
+========================================= */
+
+/* Reuse or update standard modal overlay if needed */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay for better focus */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000; /* Ensure it's on top of everything */
+    backdrop-filter: blur(5px);
+}
+
+.retake-modal {
+    width: 90%;
+    max-width: 500px;
+    background: #0B1519; /* Standard dark panel color */
+    border: 1px solid #00FFF6;
+    border-radius: 15px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: none; /* explicitly ensure no panel glow */
+}
+
+.modal-title {
+    color: #00FFF6;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 2.5rem;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+/* Base Modal Button - Keeps the exact size requested */
+.modal-btn {
+    height: 40px; 
+    padding: 0 2.5rem;
+    border-radius: 20px; 
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Primary "Yes" Button - Matches Smart Review base */
+.modal-btn.primary {
+    background: #00FFF6;
+    color: #0B1519;
+    border: 1px solid #00FFF6; /* Added border so it doesn't jump on hover */
+}
+
+/* Hover matches Smart Review hover (Inverts color + adds glow) */
+.modal-btn.primary:hover {
+    background: #011e22;
+    color: #00FFF6;
+    box-shadow: 0 0 10px rgba(0, 255, 246, 0.4);
+}
+
+/* Secondary "No" Button - Outlined variant to match your image */
+.modal-btn.secondary {
+    background: transparent;
+    color: #00FFF6;
+    border: 1px solid #00FFF6;
+}
+
+/* Secondary Hover - Also gets the Smart Review glowing aesthetic */
+.modal-btn.secondary:hover {
+    background: #011e22;
+    box-shadow: 0 0 10px rgba(0, 255, 246, 0.4);
+}
+
+/* =========================================
+   --- CUSTOM DASHBOARD SCROLLBAR --- 
+========================================= */
+
+/* Targets the main browser scrollbar and any scrollable containers inside */
+::-webkit-scrollbar {
+    width: 8px;  /* Slimmer, more modern profile */
+    height: 8px; /* For horizontal scrollbars if ever needed */
+}
+
+/* The track (background) of the scrollbar */
+::-webkit-scrollbar-track {
+    background: #0B1519; /* Matches your deep dark app background */
+    border-left: 1px solid rgba(0, 255, 246, 0.05); /* Very subtle divider */
+}
+
+/* The draggable handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 246, 0.3); /* Subtle cyan tint */
+    border-radius: 10px; /* Fully rounded pill shape */
+}
+
+/* When the user hovers over the draggable handle */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 246, 0.6); /* Brighter cyan glow on interaction */
+}
+
+/* =========================================
+       --- CRAFTING QUIZ LOADING SCREEN --- 
+========================================= */
+
+.quiz-loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    
+    /* Matches your dashboard background */
+    background-color: var(--bg-dark);
+    background-image: url('../assets/background.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Sits right below the navbar (z-index 1000) */
+    z-index: 999; 
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Space between lines and text */
+}
+
+.loading-line {
+    width: 500px;
+    max-width: 80vw;
+    border: 0;
+    height: 1px;
+    background: rgba(0, 255, 246, 0.4); /* Subtle cyan lines */
+}
+
+.loading-text {
+    color: #00FFF6;
+    font-size: 3rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin: 0;
+    display: inline-block;
+}
+
+/* The Dots Logic */
+.loading-dots::after {
+    content: '';
+    display: inline-block;
+    width: 1.5em; /* Prevents layout jump as dots appear */
+    text-align: left;
+    animation: dotsCycle 2s steps(4, end) infinite;
+}
+
+@keyframes dotsCycle {
+    0%, 20% { content: ''; }
+    40%      { content: '.'; }
+    60%      { content: '..'; }
+    80%, 100% { content: '...'; }
+}
+
+/* =========================================
+       --- QUIZ HISTORY PAGE --- 
+========================================= */
+
+.qh-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-height: calc(100vh - 70px);
+}
+
+/* --- Header Section --- */
+.qh-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* THE MAGIC FIX: Pushes the left and right sides to the edges */
+    margin-bottom: 2rem; /* Gives breathing room before the grid starts */
+    width: 100%;
+}
+
+.qh-header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.qh-btn-back {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #00FFF6;
+    background: rgba(0, 255, 246, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.qh-btn-back svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 2px; /* Visual optical alignment for the triangle */
+}
+
+.qh-btn-back:hover {
+    background: rgba(0, 255, 246, 0.15);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 255, 246, 0.3);
+}
+
+.qh-header h1 {
+    font-size: 2.2rem;
+    color: #fff;
+    font-weight: 700;
+    margin: 0;
+}
+
+.qh-divider {
+    height: 40px;
+    width: 2px;
+    background-color: rgba(0, 255, 246, 0.5);
+}
+
+.qh-header h2 {
+    font-size: 1.8rem;
+    color: #00FFF6;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* --- Grid & Cards --- */
+.qh-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .qh-grid {
+        grid-template-columns: 1fr; /* Stacks to 1 column on smaller screens */
+    }
+}
+
+.qh-card {
+    background: rgba(8, 17, 20, 0.6);
+    border: 1px solid rgba(0, 255, 246, 0.3);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto; 
+    align-items: center;
+    gap: 1.5rem;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.qh-card:hover {
+    background: rgba(0, 255, 246, 0.05);
+    border-color: #00FFF6;
+}
+
+/* Score Circle */
+.qh-score-ring {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* JS will inject the specific conic gradient here */
+    background: #0B1519; 
+}
+
+.qh-score-inner {
+    width: 42px;
+    height: 42px;
+    background: #0B1519;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* Card Text */
+.qh-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.qh-card-info .qh-username {
+    color: #00FFF6;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.qh-card-info .qh-date {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* Percentage */
+.qh-percent {
+    color: #00FFF6;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+/* Pagination Container */
+.qh-pagination-container {
+    display: flex;
+    justify-content: flex-end; /* This forces it to the right */
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0; /* Removed the top margin since it sits in the header now */
+}
+
+/* =========================================
+       --- SMART REVIEW MODAL --- 
+========================================= */
+
+.sr-modal-content {
+    background: #0B1519;
+    border: 1px solid #00FFF6;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    /* The outer glow from your image */
+    box-shadow: 0 0 25px rgba(0, 255, 246, 0.2); 
+    
+    /* Locks the modal height so it doesn't grow taller than the screen */
+    max-height: 85vh; 
+    overflow: hidden; 
+}
+
+/* --- Fixed Header --- */  
+.sr-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(0, 255, 246, 0.2);
+}
+
+.sr-header h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* --- Scrollable Content --- */
+.sr-body {
+    padding: 1.5rem 2rem;
+    /* Allows this specific section to scroll if text is long */
+    overflow-y: auto; 
+    flex-grow: 1;   
+}
+
+.sr-topic {
+    color: #00FFF6;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.sr-desc {
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.sr-link {
+    color: #00FFF6;
+    text-decoration: underline;
+    font-size: 0.95rem;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.sr-link:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0, 255, 246, 0.4);
+}
+
+/* --- Fixed Footer --- */
+.sr-footer {
+    padding: 1rem 2rem;
+    border-top: 1px solid rgba(0, 255, 246, 0.2);
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Small Cyan Pill Button */
+.btn-done {
+    background: #00FFF6;
+    color: #0B1519;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem 1.8rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-done:hover {
+    background: #011e22;
+    color: #00FFF6;
+    box-shadow: 0 0 10px rgba(0, 255, 246, 0.4);
+}
+
+/* =========================================
+   --- NUCLEAR SCROLL OVERRIDE ---
+   Forces the entire page to scroll natively.
+   Kills all flexbox height traps.
+========================================= */
+
+body.dashboard-body {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow-y: visible !important;
+}
+
+.dashboard-main-full {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow-y: visible !important;
+    flex: none !important;
+}
+
+.quiz-take-fullscreen {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+}
+
+.qt-content-area {
+    overflow-y: visible !important;
+    flex-grow: 0 !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+}
+
+.qt-footer-full {
+    margin-bottom: 100px !important;
+}

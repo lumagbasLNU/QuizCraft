@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results - QuizCraft</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+    <main class="dashboard-main-full qr-page">
+        
+        <button class="qr-btn-back" id="btn-back-dashboard" aria-label="Go Back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00FFF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 18l-6-6 6-6"/>
+            </svg>
+        </button>
+
+        <header class="qr-header">
+            <h1>Quiz Completed!</h1>
+            <h2>Results for <span id="qr-quiz-title">Loading...</span></h2>
+        </header>
+
+        <div class="qr-layout">
+            
+            <div class="qr-left">
+                <div class="qr-results-list" id="qr-results-list">
+                    </div>
+                
+                <div class="qr-pagination" id="qr-pagination-container">
+                    </div>
+            </div>
+
+            <div class="qr-right glass-panel">
+                
+                <div class="qr-score-circle" id="qr-score-circle" style="--progress: 0deg;">
+                    <div class="qr-score-inner">
+                        <span class="qr-score-fraction" id="qr-score-fraction">0/0</span>
+                        <hr class="qr-score-divider">
+                        <span class="qr-score-percent" id="qr-score-percent">0%</span>
+                    </div>
+                </div>
+
+                <div class="qr-actions">
+                    <button class="btn-secondary qr-btn-block" id="btn-retake">Retake Quiz</button>
+                    <button class="btn-primary-dark qr-btn-block" id="btn-history">View History</button>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <div class="modal-overlay" id="retakeModal" style="display: none;">
+        <div class="retake-modal glass-panel">
+            <h2 class="modal-title">Are you sure you want to<br>retake this quiz?</h2>
+            <div class="modal-buttons">
+                <button type="button" class="modal-btn primary" id="confirmRetake">Yes</button>
+                <button type="button" class="modal-btn secondary" id="cancelRetake">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="smart-review-modal" style="display: none;">
+        <div class="sr-modal-content">
+            
+            <div class="sr-header">
+                <h2>Smart Review</h2>
+            </div>
+            
+            <div class="sr-body">
+                <h3 class="sr-topic">Question Answer/Topic</h3>
+                <p class="sr-desc">
+                    This is a description of the answer/topic you want to review. blah blah blah proper name, place name, back story stuff idk. Words, words, words, words, and more words. Sentence and more sentences forming this paragraph.
+                </p>
+
+                <h3 class="sr-topic mt-2">Learn More:</h3>
+                <a href="#" class="sr-link" target="_blank">Click here to read more about this topic</a>
+            </div>
+            
+            <div class="sr-footer">
+                <button type="button" class="btn-done" id="btn-close-sr">Done</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/quiz_result.js"></script>
+</body>
+</html>

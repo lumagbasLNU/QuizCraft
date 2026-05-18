@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - QuizCraft</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="login-wrapper">
+        
+        <section class="form-section centered-form">
+            <div class="login-card">
+                
+                <header class="card-header">
+                    <h1>Welcome to Quizcraft</h1>
+                    <p>Join us on QuizCraft and start crafting your quizzes!</p>
+                </header>
+                
+                <!-- 1. Added id="registerForm" to the form tag -->
+                <form id="registerForm" class="login-form">
+                    
+                    <div class="input-group">
+                        <label for="email" class="sr-only">Email Address</label>
+                        <img src="../assets/icons/email.svg" alt="" aria-hidden="true" class="input-icon">                        
+                        <input type="email" id="email" name="email" placeholder="Email Address" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="username" class="sr-only">Username</label>
+                        <img src="../assets/icons/user.svg" alt="" aria-hidden="true" class="input-icon">                        
+                        <input type="text" id="username" name="username" placeholder="Username" required>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="password" class="sr-only">Password</label>
+                            <img src="../assets/icons/lock.svg" alt="" aria-hidden="true" class="input-icon">
+                            <input type="password" id="password" name="password" placeholder="Password" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="confirm-password" class="sr-only">Confirm Password</label>
+                            <img src="../assets/icons/lock.svg" alt="" aria-hidden="true" class="input-icon">
+                            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+                        </div>
+                    </div>
+
+                    <!-- 2. Added the message div right above the submit button -->
+                    <div id="message" style="text-align: center; color: #d9534f; margin-bottom: 15px; font-weight: 500;"></div>
+
+                    <button type="submit" class="btn-primary">Sign Up</button>
+                </form>
+
+                <footer class="card-footer">
+                    <p>Already have an account? <a href="login">Log In</a></p>
+                </footer>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 3. Added the Javascript connection at the very bottom -->
+    <script src="../js/auth.js"></script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', (e) => handleAuth(e, 'register'));
+    </script>
+</body>
+</html>

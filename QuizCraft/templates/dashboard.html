@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - QuizCraft</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+    <div id="navbar-container"></div>   
+
+    <main class="dashboard-main-full">
+            
+        <header class="content-header">
+            <h1>Welcome, <span id="dynamic-username">User</span>!</h1>
+
+            <div class="join-quiz-bar">
+                <div class="join-input-group">
+                    <input type="text" id="joinCodeInput" placeholder="Enter Quiz Code (e.g. 11XRG9)"
+                           maxlength="6" autocomplete="off" spellcheck="false">
+                    <button id="joinQuizBtn" class="join-quiz-btn">Join Quiz</button>
+                </div>
+                <p class="join-error" id="joinError" style="display: none;"></p>
+            </div>
+
+            <div class="tabs">
+                <button class="tab" id="tab-community">Community Quizzes</button>
+                <button class="tab active" id="tab-my-quizzes">My Quizzes</button>
+            </div>
+        </header>
+
+        <section id="content-community" style="display: none; width: 100%;">
+            <div class="empty-state" id="community-empty">
+                <h2>Explore the IT Trivia Community Quizzes.</h2>
+                <p>Discover and play quizzes from different fields!</p>
+            </div>
+            <div id="community-pagination" class="dashboard-pagination" style="display: none;"></div>
+        </section>
+
+        <section id="content-my-quizzes" style="display: none; width: 100%;">
+            
+            <div id="my-quizzes-empty" class="empty-state" style="display: flex;">
+                <h2>Every great quiz starts with one question.</h2>
+                <p>Create your first quiz now!</p>
+            </div>
+            
+            <div class="pagination-wrapper" id="my-quizzes-pagination" style="display: none;">
+                <div class="pagination-container">
+                    <button class="page-btn" aria-label="First Page"><svg viewBox="0 0 24 24"><path d="M17 18L11 12l6-6M7 6v12"/></svg></button>
+                    <button class="page-btn page-text-btn" aria-label="Previous Page"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg><span>Previous</span></button>
+                    <div class="page-indicator">
+                        <input type="number" class="page-input" value="1" min="1">
+                        <span class="page-total">of <span>1</span></span>
+                    </div>
+                    <button class="page-btn page-text-btn" aria-label="Next Page"><span>Next</span><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+                    <button class="page-btn" aria-label="Last Page"><svg viewBox="0 0 24 24"><path d="M7 18l6-6-6-6M17 6v12"/></svg></button>
+                </div>
+            </div>
+
+            <div id="my-quizzes-grid" class="quiz-grid" style="display: none;"></div>
+
+        </section>
+
+    </main>
+        
+    <div class="modal-overlay" id="logoutModal" style="display: none;">
+        <div class="logout-modal">
+            <h2 class="modal-title">Are you sure you want to<br>Log out?</h2>
+            <div class="modal-buttons">
+                <button class="modal-btn" id="confirmLogout">Yes</button>
+                <button class="modal-btn" id="cancelLogout">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="viewQuizModal" style="display: none;">
+        <div class="view-quiz-modal">
+            
+            <button class="btn-modal-back" id="closeViewQuizBtn" aria-label="Go Back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#00FFF6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; margin-right: 2px;">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+
+            <img src="../assets/background.svg" alt="Quiz Cover" class="view-quiz-img" id="modal-img">
+
+            <div class="view-quiz-content">
+                <div class="vq-header">
+                    <h2 id="modal-title">Quiz Title</h2>
+                    <button class="icon-btn edit-btn"><img src="../assets/icons/edit.svg" alt="Edit"></button>
+                </div>
+
+                <div class="vq-meta">
+                    <p>Creator: <span class="highlight" id="modal-creator">Username</span></p>
+                    <p>Number of Questions: <span class="highlight" id="modal-questions">5</span></p>
+                    <p>Quiz Type: <span class="highlight" id="modal-type">Identification</span></p>
+                </div>
+
+                <p class="vq-description" id="modal-desc">Description for the quiz</p>
+
+                <div class="vq-actions">
+                    <div class="take-quiz-wrapper">
+                        <button class="btn-take-quiz">Take Quiz</button>
+                    </div>
+                    <button class="btn-view-attempts" id="btnViewAttempts" style="display: none;">View Attempts</button>
+                </div>
+
+                <button class="icon-btn delete-btn"><img src="../assets/icons/delete.svg" alt="Delete"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="editModal" style="display: none;">
+        <div class="logout-modal">
+            <h2 class="modal-title">Do you want to make<br>changes to this quiz?</h2>
+            <div class="modal-buttons">
+                <button class="modal-btn" id="confirmEdit">Yes</button>
+                <button class="modal-btn" id="cancelEdit">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="deleteModal" style="display: none;">
+        <div class="logout-modal">
+            <h2 class="modal-title">Are you sure you want to<br>delete this quiz?</h2>
+            <div class="modal-buttons">
+                <button class="modal-btn" id="confirmDelete">Yes</button>
+                <button class="modal-btn" id="cancelDelete">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="attemptsModal" style="display: none;">
+        <div class="attempts-modal">
+            <button class="btn-modal-back" id="closeAttemptsBtn" aria-label="Go Back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#00FFF6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; margin-right: 2px;">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            <div class="attempts-header">
+                <h2>Quiz Attempts</h2>
+                <p id="attempts-quiz-title" class="attempts-subtitle">Quiz Title</p>
+            </div>
+            <div class="attempts-body" id="attemptsBody">
+                <div class="attempts-empty">Loading attempts...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="quiz-loading-overlay" id="quiz-loading-overlay" style="display: none;">
+        <div class="loading-center-content">
+            <hr class="loading-line">
+            <h1 class="loading-text">CRAFTING QUIZ<span class="loading-dots"></span></h1>
+            <hr class="loading-line">
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

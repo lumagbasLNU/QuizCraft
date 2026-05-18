@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="login-wrapper">
+        
+        <section class="branding-section">
+            <div class="logo-container">
+                <img src="../assets/logo.svg" alt="QuizCraft Logo" class="brand-logo">
+                <img src="../assets/quizcraft-text.svg" alt="QuizCraft" class="brand-text">
+            </div>
+        </section>
+
+        <section class="form-section">
+            <div class="login-card">
+                
+                <header class="card-header">
+                    <h1>Welcome to Quizcraft</h1>
+                    <p>Your journey begins with a single question.</p>
+                </header>
+                
+                <form id="loginForm" class="login-form"> 
+                    
+                    <div class="input-group">
+                        <label for="username" class="sr-only">Username</label>
+                        <img src="../assets/icons/user.svg" alt="" aria-hidden="true" class="input-icon">                        
+                        <input type="text" id="username" name="username" placeholder="Username" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="password" class="sr-only">Password</label>
+                        <img src="../assets/icons/lock.svg" alt="" aria-hidden="true" class="input-icon">
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                    </div>
+
+
+
+
+                    <div id="message" style="text-align: center; color: #d9534f; margin-bottom: 15px; font-weight: 500;"></div>
+
+                    <button type="submit" class="btn-primary">Log In</button>
+                </form>
+
+                <footer class="card-footer">
+                    <p>New to QuizCraft? <a href="/register">Create an Account</a></p>
+                </footer>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', (e) => handleAuth(e, 'login'));
+    </script>
+</body>
+</html>
